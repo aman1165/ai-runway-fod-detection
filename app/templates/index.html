@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Runway FOD Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="page-shell">
+    <header class="hero">
+        <div class="hero-copy">
+            <div class="brand-line"><span class="status-dot"></span><span>COMPUTER VISION SAFETY PROTOTYPE</span></div>
+            <h1>AI Runway <span>FOD Detection</span></h1>
+            <p class="hero-text">Detect foreign object debris in runway and taxiway imagery using a trained YOLO object-detection model.</p>
+            <div class="hero-tags">
+                <span>31 FOD Classes</span><span>YOLO Object Detection</span><span>FastAPI</span><span>GPU-trained Model</span>
+            </div>
+        </div>
+        <div class="hero-panel">
+            <div class="panel-label">MODEL STATUS</div>
+            <div id="modelStatus" class="model-status">Checking...</div>
+            <div class="panel-divider"></div>
+            <div class="panel-row"><span>Inference</span><strong>Real-time</strong></div>
+            <div class="panel-row"><span>Input</span><strong>Image</strong></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="workspace">
+            <div class="section-heading">
+                <div><p class="section-kicker">DETECTION WORKSPACE</p><h2>Inspect an image</h2></div>
+                <div class="threshold-control">
+                    <label for="confidenceSlider">Confidence</label>
+                    <div class="threshold-value"><span id="confidenceValue">25</span>%</div>
+                    <input id="confidenceSlider" type="range" min="5" max="95" value="25">
+                </div>
+            </div>
+
+            <div class="input-grid">
+                <div id="dropZone" class="drop-zone card">
+                    <div class="upload-icon">+</div>
+                    <h3>Upload runway image</h3>
+                    <p>Drag &amp; drop an image here, or choose a file from your computer.</p>
+                    <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                    <button id="chooseButton" class="primary-button">Choose Image</button>
+                    <div id="selectedFile" class="selected-file"></div>
+                </div>
+
+                <div class="card sample-card">
+                    <div class="card-topline">
+                        <div><p class="section-kicker">QUICK DEMO</p><h3>Try a sample</h3></div>
+                        <span class="sample-count">FOD-A</span>
+                    </div>
+                    <p class="sample-description">Use one of the available FOD-A test images to run the detector without uploading a file.</p>
+                    <div id="sampleGrid" class="sample-grid"><div class="sample-loading">Loading samples...</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resultSection" class="results hidden">
+            <div class="result-header">
+                <div><p class="section-kicker">MODEL OUTPUT</p><h2>Detection report</h2></div>
+                <div id="resultStatus" class="result-status"></div>
+            </div>
+
+            <div class="result-grid">
+                <div class="card result-image-card">
+                    <div class="image-caption">Annotated image</div>
+                    <div class="image-frame"><img id="resultImage" src="" alt="Annotated FOD detection result"></div>
+                </div>
+
+                <div class="result-side">
+                    <div class="stats-grid">
+                        <div class="stat-card"><span>Objects</span><strong id="detectionCount">0</strong></div>
+                        <div class="stat-card"><span>Threshold</span><strong id="resultThreshold">25%</strong></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-topline"><div><p class="section-kicker">FINDINGS</p><h3>Detected objects</h3></div></div>
+                        <div id="detectionList" class="detection-list"></div>
+                    </div>
+
+                    <div class="card metadata-card">
+                        <div class="metadata-row"><span>Image</span><strong id="resultFilename"></strong></div>
+                        <div class="metadata-row"><span>Image size</span><strong id="resultDimensions"></strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>AI Runway FOD Detection</span>
+        <span>Portfolio prototype • Not certified for operational aviation use</span>
+    </footer>
+</div>
+<script src="/static/script.js"></script>
+</body>
+</html>

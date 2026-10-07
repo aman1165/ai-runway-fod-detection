@@ -1,0 +1,5 @@
+fastapi==0.142.2
+uvicorn[standard]
+python-multipart
+pillow
+ultralytics==8.4.174

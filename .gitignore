@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+data/raw/
+data/processed/
+
+models/
+artifacts/
+
+.env
+# Generated model/training outputs
+runs/
+weights/
+notebooks/*.pt
